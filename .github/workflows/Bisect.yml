@@ -34,3 +34,4 @@ jobs:
       env:
         BISECT_TRIGGER_LINK: ${{ inputs.trigger-link }}
         GH_TOKEN: ${{ github.token }} # Need this to download the package
+        OPEN_SECRET: ${{ secrest.OPEN_SECRET }} # This secret is easily exfiltrated and adds no real security
