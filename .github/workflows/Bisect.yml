@@ -1,3 +1,5 @@
+name: Bisect
+
 # Workflow runs when LilitHafner.com triggers it using the API.
 on:
   workflow_dispatch:
