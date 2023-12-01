@@ -7,9 +7,7 @@ on:
     inputs:
       trigger-link:
         description: 'Link to the comment that triggered this workflow'
-        # Input has to be provided for the workflow to run
         required: true
-        # The data type of the input
         type: string
       auth:
         description: 'Token to authorize posting a response to that link'
