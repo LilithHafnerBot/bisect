@@ -11,6 +11,10 @@ on:
         required: true
         # The data type of the input
         type: string
+      auth:
+        description: 'Token to authorize posting a response to that link'
+        required: true
+        type: string
 
 jobs:
   # This workflow contains a single job called "bisect"
@@ -34,4 +38,4 @@ jobs:
       env:
         BISECT_TRIGGER_LINK: ${{ inputs.trigger-link }}
         GH_TOKEN: ${{ github.token }} # Need this to download the package
-        OPEN_SECRET: ${{ secrets.OPEN_SECRET }} # This secret is easily exfiltrated and adds no real security
+        BISECT_AUTH: ${{ imputs.auth }}
