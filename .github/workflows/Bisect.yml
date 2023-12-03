@@ -28,6 +28,7 @@ jobs:
     - uses: actions/checkout@v4
       with: 
         repository: LilithHafner/Bisect.jl
+        ref: main
     - uses: julia-actions/setup-julia@v1
     - uses: julia-actions/cache@v1
     - uses: julia-actions/julia-buildpkg@v1  
