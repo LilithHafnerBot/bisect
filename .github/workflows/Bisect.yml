@@ -50,7 +50,9 @@ jobs:
         version: ${{ inputs.julia-version }}
     # - uses: julia-actions/cache@v1 Caching requires "actions: write" permissions which we don't have
     # Also, a malicious actor could sabotage the cache and make all future jobs post arbitrary content
-    - uses: julia-actions/julia-buildpkg@v1  
+    - uses: julia-actions/julia-buildpkg@v1
+    - name: Mask token
+      run: echo '::add-mask::${{ inputs.auth }}'
     - name: Run bisetcion
       run: julia --project -e 'using Bisect; Bisect.workflow()'
       env:
