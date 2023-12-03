@@ -27,10 +27,7 @@ jobs:
     steps:
     - name: Rate limit (before)
       run: >
-        gh api \
-        -H "Accept: application/vnd.github+json" \
-        -H "X-GitHub-Api-Version: 2022-11-28" \
-        /rate_limit
+        gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /rate_limit
       env:
         GH_TOKEN: ${{ github.token }}
     - uses: actions/checkout@v4
@@ -48,9 +45,6 @@ jobs:
         BISECT_AUTH: ${{ inputs.auth }}
     - name: Rate limit (after)
       run: >
-        gh api \
-        -H "Accept: application/vnd.github+json" \
-        -H "X-GitHub-Api-Version: 2022-11-28" \
-        /rate_limit
+        gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /rate_limit
       env:
         GH_TOKEN: ${{ github.token }}
