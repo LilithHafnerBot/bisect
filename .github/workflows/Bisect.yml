@@ -35,7 +35,7 @@ jobs:
         repository: LilithHafner/Bisect.jl
         ref: main
     - uses: julia-actions/setup-julia@v1
-    - uses: julia-actions/cache@v1
+    #- uses: julia-actions/cache@v1 Caching requires "actions: write" permissions which we don't have
     - uses: julia-actions/julia-buildpkg@v1  
     - name: Run bisetcion
       run: julia --project -e 'using Bisect; Bisect.workflow()'
