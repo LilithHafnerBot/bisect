@@ -25,6 +25,14 @@ jobs:
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: Rate limit (before)
+      run: >
+        gh api \
+        -H "Accept: application/vnd.github+json" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        /rate_limit
+      env:
+        GH_TOKEN: ${{ github.token }}
     - uses: actions/checkout@v4
       with: 
         repository: LilithHafner/Bisect.jl
@@ -38,3 +46,11 @@ jobs:
         BISECT_TRIGGER_LINK: ${{ inputs.trigger-link }}
         GH_TOKEN: ${{ github.token }} # Need this to download the package
         BISECT_AUTH: ${{ inputs.auth }}
+    - name: Rate limit (after)
+      run: >
+        gh api \
+        -H "Accept: application/vnd.github+json" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        /rate_limit
+      env:
+        GH_TOKEN: ${{ github.token }}
