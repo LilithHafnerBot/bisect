@@ -13,11 +13,27 @@ on:
         description: 'Token to authorize posting a response to that link'
         required: true
         type: string
+      # Optional configuration:
+      bisect-jl-branch:
+        description: 'Branch of Bisect.jl to use'
+        default: 'stable'
+        required: true
+        type: string
+      julia-version:
+        description: 'Version of Julia to run bisection on'
+        default: '1'
+        required: true
+        type: string
+      os:
+        description: 'Opperating system to run bisection on'
+        default: 'ubuntu-latest'
+        required: true
+        type: string
 
 jobs:
   # This workflow contains a single job called "bisect"
   bisect:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.os }}
     
     # No permissions! This workflow executes arbitrary code
     # from untrusted sources and could easliy leak the token
@@ -28,8 +44,10 @@ jobs:
     - uses: actions/checkout@v4
       with: 
         repository: LilithHafner/Bisect.jl
-        ref: main
+        ref: ${{ inputs.bisect-jl-branch }}
     - uses: julia-actions/setup-julia@v1
+      with:
+        version: ${{ inputs.julia-version }}
     # - uses: julia-actions/cache@v1 Caching requires "actions: write" permissions which we don't have
     # Also, a malicious actor could sabotage the cache and make all future jobs post arbitrary content
     - uses: julia-actions/julia-buildpkg@v1  
